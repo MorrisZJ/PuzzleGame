@@ -1,4 +1,7 @@
-package EightPuzzle;
+package EightPuzzle.Utilities;
+
+
+import EightPuzzle.PuzzleStructure.EightPuzzle;
 
 public class Util {
 

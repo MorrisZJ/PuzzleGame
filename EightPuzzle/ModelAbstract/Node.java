@@ -1,4 +1,4 @@
-package EightPuzzle.src;
+package EightPuzzle.ModelAbstract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public abstract class Node<StateType, NodeType, ActionType> {
         this(currentState, null, null);
     }
 
-    public List<NodeType> findReachableMove() {
+    public List<NodeType> findReachableMove() throws InterruptedException {
         List<NodeType> moves = new ArrayList<>();
         for (ActionType action: allActionsOfGame()) {
             NodeType newNodeAfterMove = doMove(action);
@@ -49,6 +49,6 @@ public abstract class Node<StateType, NodeType, ActionType> {
 
     public abstract boolean equals(Object o);
 
-    public abstract NodeType doMove(ActionType actionDone);
+    public abstract NodeType doMove(ActionType actionDone) throws InterruptedException;
 
 }

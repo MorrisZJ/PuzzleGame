@@ -1,4 +1,7 @@
-package EightPuzzle;
+package EightPuzzle.PuzzleAction;
+import EightPuzzle.PuzzleStructure.AStarFrontier;
+import EightPuzzle.PuzzleStructure.EightPuzzleNode;
+import EightPuzzle.Utilities.Util;
 
 import java.util.*;
 
@@ -37,7 +40,10 @@ public class Search {
             if (!explored.contains(node)) {
                 explored.add(node);
                 for (EightPuzzleNode successor: node.findReachableMove()) {
-                    if (!explored.contains(successor)) frontier.push(successor);
+                    if (!explored.contains(successor)) {
+                        successor.setDept(node.getDept() + 1);
+                        frontier.push(successor);
+                    }
                 }
             }
 

@@ -1,6 +1,6 @@
-package EightPuzzle;
-
-import EightPuzzle.src.PriorityFrontier;
+package EightPuzzle.PuzzleStructure;
+import EightPuzzle.ModelAbstract.PriorityFrontier;
+import EightPuzzle.Utilities.Util;
 
 /**
  *
@@ -31,7 +31,7 @@ public class AStarFrontier extends PriorityFrontier<EightPuzzle, EightPuzzleNode
          *
          */
         public void autoSetPriority() {
-            int p = Util.heuristic(getNode().getCurrentState());
+            int p = Util.heuristic(getNode().getCurrentState()) + getNode().getDept();
             setPriorityValue(p);
         }
 

@@ -1,4 +1,4 @@
-package EightPuzzle.src;
+package EightPuzzle.ModelAbstract;
 
 import java.util.Arrays;
 

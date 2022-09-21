@@ -1,4 +1,8 @@
-package EightPuzzle;
+package EightPuzzle.Test;
+import EightPuzzle.PuzzleStructure.EightPuzzle;
+import EightPuzzle.PuzzleAction.Search;
+import EightPuzzle.PuzzleStructure.EightPuzzleNode;
+
 import java.util.List;
 
 
@@ -6,9 +10,8 @@ public class Test {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         testAstar();
-
     }
 
 
@@ -21,8 +24,9 @@ public class Test {
         Character[] state5 = new Character[]{'3','1','2','6','4','b','7','8','5'};
         Character[] state6 = new Character[]{'7','2','5','6','4','b','3','1','8'};
         Character[] state7 = new Character[]{'5','3','b','1','4','2','7','6','8'};
+        Character[] state8 = new Character[]{'1','2','5','6','b','4','7','3','8'};
 
-        EightPuzzle puzzleStart = new EightPuzzle(state7);
+        EightPuzzle puzzleStart = new EightPuzzle(state8);
         EightPuzzleNode start = new EightPuzzleNode(puzzleStart);
 
         EightPuzzle puzzleGoal = new EightPuzzle(stateGoal);
@@ -37,7 +41,7 @@ public class Test {
 
 
 
-    public static void testMove() {
+    public static void testMove()  {
         Character[] characters = new Character[]{'1','3','5','2','4','b','7','8','6'};
         EightPuzzle puzzle = new EightPuzzle(characters);
         EightPuzzleNode node = new EightPuzzleNode(puzzle);
