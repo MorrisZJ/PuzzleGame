@@ -43,8 +43,13 @@ public class Search {
     }
 
 
-
-
+    /**
+     *
+     * @param startState
+     * @param goalState
+     * @param k
+     * @return
+     */
     public static List<EightPuzzleNode> beamSearch(EightPuzzleNode startState, EightPuzzleNode goalState, int k) {
 
         return null;

@@ -2,12 +2,18 @@ package EightPuzzle;
 
 import EightPuzzle.src.PriorityFrontier;
 
+/**
+ *
+ */
 public class AStarFrontier extends PriorityFrontier<EightPuzzle, EightPuzzleNode, String> {
 
     private int size = 0;
 
     private AStarFrontierNode head;
 
+    /**
+     *
+     */
     public static class AStarFrontierNode{
 
         private EightPuzzleNode node;
@@ -54,6 +60,10 @@ public class AStarFrontier extends PriorityFrontier<EightPuzzle, EightPuzzleNode
         }
     }
 
+    /**
+     *
+     * @param puzzleNode
+     */
     public void push(EightPuzzleNode puzzleNode) {
 
         AStarFrontierNode aNode = new AStarFrontierNode(puzzleNode);
@@ -87,6 +97,10 @@ public class AStarFrontier extends PriorityFrontier<EightPuzzle, EightPuzzleNode
 
     }
 
+    /**
+     *
+     * @return
+     */
     public EightPuzzleNode popPeek() {
         if (head == null) return null;
         EightPuzzleNode node = getHead().getNode();
