@@ -2,6 +2,9 @@ package EightPuzzle;
 
 import java.util.*;
 
+/**
+ *
+ */
 public class Search {
 
 
