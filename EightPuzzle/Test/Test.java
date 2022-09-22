@@ -24,7 +24,8 @@ public class Test {
         Character[] state5 = new Character[]{'3','1','2','6','4','b','7','8','5'};
         Character[] state6 = new Character[]{'7','2','5','6','4','b','3','1','8'};
         Character[] state7 = new Character[]{'5','3','b','1','4','2','7','6','8'};
-        Character[] state8 = new Character[]{'1','2','5','6','b','4','7','3','8'};
+        Character[] state8 = new Character[]{'8','7','6','5','3','2','4','b','1'}; //Solved in 3 min for h1
+        Character[] state9 = new Character[]{'7','8','5','3','b','4','2','6','1'}; //Solved in 4 min for h1
 
         EightPuzzle puzzleStart = new EightPuzzle(state8);
         EightPuzzleNode start = new EightPuzzleNode(puzzleStart);
@@ -33,9 +34,7 @@ public class Test {
         EightPuzzleNode goal = new EightPuzzleNode(puzzleGoal);
 
         List<EightPuzzleNode> list = Search.aStarSearch(start, goal);
-        for (int i = list.size() - 2; i >= 0 ; i--) {
-            System.out.println(list.get(i).getActFromParentToCurrent());
-        }
+        System.out.println(list);
         System.out.println(list.size());
     }
 

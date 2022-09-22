@@ -1,7 +1,6 @@
 package EightPuzzle.PuzzleAction;
 import EightPuzzle.PuzzleStructure.AStarFrontier;
 import EightPuzzle.PuzzleStructure.EightPuzzleNode;
-import EightPuzzle.Utilities.Util;
 
 import java.util.*;
 
@@ -25,12 +24,12 @@ public class Search {
         while (!frontier.isEmpty()) {
 
             EightPuzzleNode node = frontier.popPeek();
-
+            node.getCurrentState().toString("");
             if (node == null) throw new RuntimeException();
 
             if (node.equals(goalState)) {
                 ArrayList<EightPuzzleNode> stack = new ArrayList<>();
-                while (node != null) {
+                while (node != null && node.getActFromParentToCurrent() != null) {
                     stack.add(node);
                     node = node.getParentNode();
                 }

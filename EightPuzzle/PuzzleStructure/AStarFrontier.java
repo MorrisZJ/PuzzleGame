@@ -28,10 +28,10 @@ public class AStarFrontier extends PriorityFrontier<EightPuzzle, EightPuzzleNode
         }
 
         /**
-         *
+         * It is the major point of the A-Star algorithm
          */
         public void autoSetPriority() {
-            int p = Util.heuristic(getNode().getCurrentState()) + getNode().getDept();
+            int p = Util.heuristic2(getNode().getCurrentState()) + getNode().getDept(); // Currently Use two
             setPriorityValue(p);
         }
 

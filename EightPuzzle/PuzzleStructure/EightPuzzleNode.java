@@ -14,8 +14,6 @@ public class EightPuzzleNode extends Node<EightPuzzle, EightPuzzleNode, String> 
 
     private int dept = 0;
 
-
-
     /**
      *
      * @param currentState
@@ -70,7 +68,7 @@ public class EightPuzzleNode extends Node<EightPuzzle, EightPuzzleNode, String> 
 
     @Override
     public String toString() {
-        return super.toString();
+        return getActFromParentToCurrent();
     }
 
     public List<EightPuzzleNode> findReachableMove() {
