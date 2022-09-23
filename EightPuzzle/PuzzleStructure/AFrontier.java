@@ -1,7 +1,7 @@
 package EightPuzzle.PuzzleStructure;
 
 import EightPuzzle.ModelAbstract.PriorityFrontier;
-import EightPuzzle.Utilities.Util;
+import EightPuzzle.Utilities.Heuristic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +19,9 @@ public class AFrontier extends PriorityFrontier<EightPuzzle, EightPuzzleNode, St
 
     @Override
     public void push(EightPuzzleNode node) {
-        int nodeHeuristic = Util.heuristic2(node.getCurrentState()) + node.getDept();
+        int nodeHeuristic = Heuristic.heuristic2(node.getCurrentState()) + node.getDept();
         for(int i = 0; i < list.size(); i++) {
-            int currentH = Util.heuristic2(list.get(i).getCurrentState()) + list.get(i).getDept();
+            int currentH = Heuristic.heuristic2(list.get(i).getCurrentState()) + list.get(i).getDept();
             if(currentH > nodeHeuristic) {
                 list.add(i, node);
                 return;

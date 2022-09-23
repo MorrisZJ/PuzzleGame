@@ -3,6 +3,7 @@ package EightPuzzle.SlidingTile;
 
 import EightPuzzle.*;
 import EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
+import EightPuzzle.Utilities.RandomGenerator;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -63,6 +64,19 @@ public class SlidingTiles extends Application {
                     list = puzzle.A_star();
                     System.out.println(list.toString());
                     for (String s : list) {
+                        puzzle.move(s);
+                        synchronize();
+                    }
+                    break;
+                case R:
+                    puzzle.setCurrentState(RandomGenerator.randomizeStateAction(puzzle.getCurrentState(), 100));
+                    synchronize();
+                    break;
+                case B:
+                    List<String> listB;
+                    listB = puzzle.beam(35);
+                    System.out.println(listB.toString());
+                    for (String s : listB) {
                         puzzle.move(s);
                         synchronize();
                     }

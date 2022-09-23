@@ -3,13 +3,12 @@ package EightPuzzle.Utilities;
 
 import EightPuzzle.PuzzleStructure.EightPuzzle;
 
-import java.util.concurrent.Callable;
 
 /**
  * The Util class stores some specific operation and function that are used
  * to support the main function of the program
  */
-public class Util {
+public class Heuristic {
 
     /**
      * This is a heuristic function that return the numbers of the mismatch tiles.
@@ -76,6 +75,14 @@ public class Util {
         return totalDistance;
     }
 
+    /**
+     *
+     * @param currentState
+     * @param goalState
+     * @param currentI
+     * @param currentJ
+     * @return
+     */
     private static int[] findMisMatch(Character[][] currentState, Character[][] goalState, int currentI, int currentJ) {
         int[] position = new int[2];
         for (int i = 0; i < goalState.length; i++) {
@@ -89,5 +96,6 @@ public class Util {
         }
         return position;
     }
+
 
 }

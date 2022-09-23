@@ -4,6 +4,7 @@ import EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
 import EightPuzzle.PuzzleAction.Search;
 import EightPuzzle.PuzzleStructure.EightPuzzle;
 import EightPuzzle.PuzzleStructure.EightPuzzleNode;
+import EightPuzzle.Utilities.RandomGenerator;
 
 import java.util.*;
 
@@ -63,9 +64,10 @@ public class GameEightPuzzle {
 
     /**
      *
+     * @param n
      */
-    public void randomizeState() {
-
+    public void randomizeState(int n) {
+        setCurrentState(RandomGenerator.randomizeStateAction(getCurrentState(), n));
     }
 
     /**
@@ -76,6 +78,20 @@ public class GameEightPuzzle {
         EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
         EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
         List<EightPuzzleNode> listOfNodes = Search.aStarSearch(stateNode, goalNode);
+        LinkedList<String> listMove = new LinkedList<>();
+        for (EightPuzzleNode listOfNode : listOfNodes) {
+            if (listOfNode.getActFromParentToCurrent() != null) {
+                listMove.addFirst(listOfNode.getActFromParentToCurrent());
+            }
+        }
+        return listMove;
+    }
+
+
+    public List<String> beam(int k) {
+        EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
+        EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
+        List<EightPuzzleNode> listOfNodes = Search.beamSearch(stateNode, goalNode, k);
         LinkedList<String> listMove = new LinkedList<>();
         for (EightPuzzleNode listOfNode : listOfNodes) {
             if (listOfNode.getActFromParentToCurrent() != null) {
