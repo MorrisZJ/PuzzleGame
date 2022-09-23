@@ -17,7 +17,7 @@ public class Util {
      *               calculate the value of heuristic function.
      * @return Return h(x), the heuristic value of current state of the input puzzle
      */
-    public static int heuristic(EightPuzzle puzzle) {
+    public static int heuristic1(EightPuzzle puzzle) {
         int count = 0;
         String finalS = "b12345678";
         for (int i = 0; i < puzzle.getPuzzleStateArray().length; i++) {
@@ -26,10 +26,20 @@ public class Util {
         return count;
     }
 
+    /**
+     *
+     * @param puzzle
+     * @return
+     */
     public static int heuristic2(EightPuzzle puzzle) {
-        return gFunction(puzzle.getPuzzleStateArray(), new Character[]{'b','1','2','3','4','5','6','7','8'});
+        return h2(puzzle.getPuzzleStateArray(), new Character[]{'b','1','2','3','4','5','6','7','8'});
     }
 
+    /**
+     *
+     * @param oneState
+     * @return
+     */
     public static Character[][] toTwoD(Character[] oneState) {
         int k = 0;
         int width = (int) Math.sqrt(oneState.length);
@@ -43,8 +53,13 @@ public class Util {
         return characters;
     }
 
-
-    public static int gFunction(Character[] currentState, Character[] goalState) {
+    /**
+     *
+     * @param currentState
+     * @param goalState
+     * @return
+     */
+    public static int h2(Character[] currentState, Character[] goalState) {
         Character[][] cState = toTwoD(currentState);
         Character[][] gState = toTwoD(goalState);
         int totalDistance = 0;

@@ -65,12 +65,19 @@ public class EightPuzzleNode extends Node<EightPuzzle, EightPuzzleNode, String> 
         return new EightPuzzleNode(newPuzzle, this, actionDone);
     }
 
-
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return getActFromParentToCurrent();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<EightPuzzleNode> findReachableMove() {
         List<EightPuzzleNode> moves = new ArrayList<>();
         for (String action: allActionsOfGame()) {
@@ -82,10 +89,18 @@ public class EightPuzzleNode extends Node<EightPuzzle, EightPuzzleNode, String> 
         return moves;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getDept() {
         return dept;
     }
 
+    /**
+     *
+     * @param dept
+     */
     public void setDept(int dept) {
         this.dept = dept;
     }

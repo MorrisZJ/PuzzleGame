@@ -9,7 +9,7 @@ import java.util.List;
 public class AFrontier extends PriorityFrontier<EightPuzzle, EightPuzzleNode, String> {
 
 
-    private List<EightPuzzleNode> list;
+    private final List<EightPuzzleNode> list;
 
 
     public AFrontier() {
