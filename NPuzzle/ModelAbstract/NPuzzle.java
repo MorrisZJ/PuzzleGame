@@ -1,4 +1,4 @@
-package EightPuzzle.ModelAbstract;
+package NPuzzle.ModelAbstract;
 
 import java.util.Arrays;
 

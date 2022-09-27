@@ -1,14 +1,14 @@
-package EightPuzzle.Utilities;
+package NPuzzle.EightPuzzle.Utilities;
 
 
-import EightPuzzle.PuzzleStructure.EightPuzzle;
+import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzle;
 
 
 /**
  * The Util class stores some specific operation and function that are used
  * to support the main function of the program
  */
-public class Heuristic {
+public class EightHeuristic {
 
     /**
      * This is a heuristic function that return the numbers of the mismatch tiles.

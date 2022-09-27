@@ -1,8 +1,9 @@
-package EightPuzzle.PuzzleStructure;
+package NPuzzle.EightPuzzle.PuzzleStructure;
 
 
-import EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
-import EightPuzzle.ModelAbstract.Node;
+import NPuzzle.EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
+import NPuzzle.EightPuzzle.Utilities.EightHeuristic;
+import NPuzzle.ModelAbstract.Node;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +98,11 @@ public class EightPuzzleNode extends Node<EightPuzzle, EightPuzzleNode, String> 
         return dept;
     }
 
+    @Override
+    public int getHeuristic() {
+        return EightHeuristic.heuristic2(getCurrentState());
+    }
+
     /**
      *
      * @param dept
@@ -104,4 +110,6 @@ public class EightPuzzleNode extends Node<EightPuzzle, EightPuzzleNode, String> 
     public void setDept(int dept) {
         this.dept = dept;
     }
+
+
 }

@@ -1,6 +1,6 @@
 package NPuzzle;
 
-import EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
+import NPuzzle.EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
 
 import java.util.List;
 

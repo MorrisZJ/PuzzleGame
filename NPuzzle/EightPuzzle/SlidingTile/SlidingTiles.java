@@ -1,9 +1,9 @@
-package EightPuzzle.SlidingTile;
+package NPuzzle.EightPuzzle.SlidingTile;
 
 
-import EightPuzzle.*;
-import EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
-import EightPuzzle.Utilities.RandomGenerator;
+import NPuzzle.EightPuzzle.*;
+import NPuzzle.EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
+import NPuzzle.EightPuzzle.Utilities.RandomGenerator;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

@@ -1,7 +1,7 @@
-package EightPuzzle.PuzzleAction;
-import EightPuzzle.PuzzleStructure.AFrontier;
-import EightPuzzle.PuzzleStructure.BeamFrontier;
-import EightPuzzle.PuzzleStructure.EightPuzzleNode;
+package NPuzzle.EightPuzzle;
+import NPuzzle.EightPuzzle.PuzzleStructure.AFrontierEight;
+import NPuzzle.EightPuzzle.PuzzleStructure.BeamFrontierEight;
+import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzleNode;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @author Jiamu Zhang
  */
-public class Search {
+public class SearchEightPuzzle {
 
 
     /**
@@ -20,13 +20,13 @@ public class Search {
      */
     public static List<EightPuzzleNode> aStarSearch(EightPuzzleNode startState, EightPuzzleNode goalState) {
         List<EightPuzzleNode> explored = new ArrayList<>();
-        AFrontier frontier = new AFrontier();
+        AFrontierEight frontier = new AFrontierEight();
         frontier.push(startState);
 
         while (!frontier.isEmpty()) {
 
             EightPuzzleNode node = frontier.popPeek();
-            //node.getCurrentState().toString("");
+
             if (node == null) throw new RuntimeException();
 
             if (node.equals(goalState)) {
@@ -64,14 +64,16 @@ public class Search {
     public static List<EightPuzzleNode> beamSearch(EightPuzzleNode startState, EightPuzzleNode goalState, int k) {
 
         List<EightPuzzleNode> explored = new ArrayList<>();
-        BeamFrontier frontier = new BeamFrontier(k);
+        BeamFrontierEight frontier = new BeamFrontierEight(k);
         frontier.push(startState);
+        int counter = 0;
 
         while (true) {
             ArrayList<EightPuzzleNode> listOfNodes = new ArrayList<>();
 
             while (frontier.size() > 0) {
                 listOfNodes.add(frontier.popPeek());
+                counter++;
             }
 
             for (EightPuzzleNode nodeTemp : listOfNodes) {
@@ -84,6 +86,7 @@ public class Search {
                         stack.add(nodeTemp);
                         nodeTemp = nodeTemp.getParentNode();
                     }
+                    System.out.println(counter);
                     System.out.println(explored.size());
                     return stack;
                 }

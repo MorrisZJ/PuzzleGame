@@ -1,10 +1,9 @@
-package EightPuzzle;
+package NPuzzle.EightPuzzle;
 
-import EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
-import EightPuzzle.PuzzleAction.Search;
-import EightPuzzle.PuzzleStructure.EightPuzzle;
-import EightPuzzle.PuzzleStructure.EightPuzzleNode;
-import EightPuzzle.Utilities.RandomGenerator;
+import NPuzzle.EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
+import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzle;
+import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzleNode;
+import NPuzzle.EightPuzzle.Utilities.RandomGenerator;
 
 import java.util.*;
 
@@ -77,7 +76,7 @@ public class GameEightPuzzle {
     public List<String> A_star() {
         EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
         EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
-        List<EightPuzzleNode> listOfNodes = Search.aStarSearch(stateNode, goalNode);
+        List<EightPuzzleNode> listOfNodes = SearchEightPuzzle.aStarSearch(stateNode, goalNode);
         LinkedList<String> listMove = new LinkedList<>();
         for (EightPuzzleNode listOfNode : listOfNodes) {
             if (listOfNode.getActFromParentToCurrent() != null) {
@@ -87,11 +86,15 @@ public class GameEightPuzzle {
         return listMove;
     }
 
-
+    /**
+     *
+     * @param k
+     * @return
+     */
     public List<String> beam(int k) {
         EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
         EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
-        List<EightPuzzleNode> listOfNodes = Search.beamSearch(stateNode, goalNode, k);
+        List<EightPuzzleNode> listOfNodes = SearchEightPuzzle.beamSearch(stateNode, goalNode, k);
         LinkedList<String> listMove = new LinkedList<>();
         for (EightPuzzleNode listOfNode : listOfNodes) {
             if (listOfNode.getActFromParentToCurrent() != null) {

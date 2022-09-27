@@ -1,4 +1,4 @@
-package EightPuzzle.PuzzleAction;
+package NPuzzle.EightPuzzle.PuzzleAction;
 
 public class MoveActionEightPuzzle {
 

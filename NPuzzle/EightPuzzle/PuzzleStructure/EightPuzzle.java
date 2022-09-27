@@ -1,5 +1,5 @@
-package EightPuzzle.PuzzleStructure;
-import EightPuzzle.ModelAbstract.NPuzzle;
+package NPuzzle.EightPuzzle.PuzzleStructure;
+import NPuzzle.ModelAbstract.NPuzzle;
 
 import java.util.Arrays;
 

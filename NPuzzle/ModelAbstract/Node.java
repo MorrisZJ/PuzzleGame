@@ -1,4 +1,4 @@
-package EightPuzzle.ModelAbstract;
+package NPuzzle.ModelAbstract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ public abstract class Node<StateType, NodeType, ActionType> {
     private final StateType currentState;
     private final NodeType parentNode;
     private final ActionType actFromParentToCurrent;
+
 
     /**
      *
@@ -102,5 +103,12 @@ public abstract class Node<StateType, NodeType, ActionType> {
      * @throws InterruptedException
      */
     public abstract NodeType doMove(ActionType actionDone) throws InterruptedException;
+
+    public abstract void setDept(int dept);
+
+    public abstract int getDept();
+
+    public abstract int getHeuristic();
+
 
 }

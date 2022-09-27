@@ -1,4 +1,4 @@
-package EightPuzzle.ModelAbstract;
+package NPuzzle.ModelAbstract;
 
 /**
  *
@@ -7,6 +7,7 @@ package EightPuzzle.ModelAbstract;
  * @param <ActionType>
  */
 public abstract class PriorityFrontier<StateType, NodeType extends Node<StateType, NodeType, ActionType>, ActionType> {
+
 
     /**
      *

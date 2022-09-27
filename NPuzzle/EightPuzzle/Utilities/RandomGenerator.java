@@ -1,6 +1,6 @@
-package EightPuzzle.Utilities;
+package NPuzzle.EightPuzzle.Utilities;
 
-import EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
+import NPuzzle.EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
 
 
 import java.util.Random;
