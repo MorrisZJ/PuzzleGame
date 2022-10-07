@@ -1,4 +1,4 @@
-package NPuzzle.EightPuzzle.SlidingTile;
+package NPuzzle.SlidingTile;
 
 
 import NPuzzle.EightPuzzle.*;
@@ -61,7 +61,11 @@ public class SlidingTiles extends Application {
                     break;
                 case A:
                     List<String> list;
-                    list = puzzle.A_star();
+                    try {
+                        list = puzzle.A_star("h2");
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     System.out.println(list.toString());
                     for (String s : list) {
                         puzzle.move(s);
@@ -74,7 +78,7 @@ public class SlidingTiles extends Application {
                     break;
                 case B:
                     List<String> listB;
-                    listB = puzzle.beam(35);
+                    listB = puzzle.beam(35, "h2");
                     System.out.println(listB.toString());
                     for (String s : listB) {
                         puzzle.move(s);

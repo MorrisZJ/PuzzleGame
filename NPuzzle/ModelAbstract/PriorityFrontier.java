@@ -13,7 +13,7 @@ public abstract class PriorityFrontier<StateType, NodeType extends Node<StateTyp
      *
      * @param node
      */
-    public abstract void push(NodeType node);
+    public abstract void push(NodeType node, String heuristic);
 
     /**
      *

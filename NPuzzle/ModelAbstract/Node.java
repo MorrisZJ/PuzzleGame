@@ -104,11 +104,13 @@ public abstract class Node<StateType, NodeType, ActionType> {
      */
     public abstract NodeType doMove(ActionType actionDone) throws InterruptedException;
 
+    public abstract int getHeuristic(String heuristic);
+
     public abstract void setDept(int dept);
 
     public abstract int getDept();
 
-    public abstract int getHeuristic();
+
 
 
 }

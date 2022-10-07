@@ -1,9 +1,11 @@
 package NPuzzle.EightPuzzle;
 
 import NPuzzle.EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
+import NPuzzle.EightPuzzle.PuzzleStructure.AFrontierEight;
 import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzle;
 import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzleNode;
 import NPuzzle.EightPuzzle.Utilities.RandomGenerator;
+import NPuzzle.ModSearch.PuzzleSearch;
 
 import java.util.*;
 
@@ -22,6 +24,7 @@ public class GameEightPuzzle {
      *
      */
     private final Character[] goalState = new Character[]{'b','1','2','3','4','5','6','7','8'};
+
 
 
 
@@ -73,10 +76,11 @@ public class GameEightPuzzle {
      *
      * @return
      */
-    public List<String> A_star() {
+    public List<String> A_star(String heuristic) throws Exception {
         EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
         EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
-        List<EightPuzzleNode> listOfNodes = SearchEightPuzzle.aStarSearch(stateNode, goalNode);
+        PuzzleSearch<EightPuzzle, EightPuzzleNode, String, AFrontierEight> search = new PuzzleSearch<>();
+        List<EightPuzzleNode> listOfNodes = search.aStarSearch(stateNode, goalNode, new AFrontierEight(), heuristic);
         LinkedList<String> listMove = new LinkedList<>();
         for (EightPuzzleNode listOfNode : listOfNodes) {
             if (listOfNode.getActFromParentToCurrent() != null) {
@@ -87,14 +91,16 @@ public class GameEightPuzzle {
     }
 
     /**
-     *
+     * No need heuristic input
+     * define own eval fun
      * @param k
      * @return
      */
-    public List<String> beam(int k) {
+    public List<String> beam(int k, String heuristic) {
         EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
         EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
-        List<EightPuzzleNode> listOfNodes = SearchEightPuzzle.beamSearch(stateNode, goalNode, k);
+
+        List<EightPuzzleNode> listOfNodes = SearchEightPuzzle.beamSearch(stateNode, goalNode, k, heuristic);
         LinkedList<String> listMove = new LinkedList<>();
         for (EightPuzzleNode listOfNode : listOfNodes) {
             if (listOfNode.getActFromParentToCurrent() != null) {

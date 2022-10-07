@@ -98,7 +98,24 @@ public class EightPuzzleNode extends Node<EightPuzzle, EightPuzzleNode, String> 
         return dept;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
+    public int getHeuristic(String heuristic) {
+        if (heuristic.equals("h1")) {
+            return EightHeuristic.heuristic1(getCurrentState());
+        } else if (heuristic.equals("h2")) {
+            return EightHeuristic.heuristic2(getCurrentState());
+        } else return EightHeuristic.heuristic2(getCurrentState());
+    }
+
+
+    /**
+     *
+     * @return
+     */
     public int getHeuristic() {
         return EightHeuristic.heuristic2(getCurrentState());
     }

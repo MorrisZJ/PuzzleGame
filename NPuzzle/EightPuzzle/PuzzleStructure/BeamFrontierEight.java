@@ -1,5 +1,7 @@
 package NPuzzle.EightPuzzle.PuzzleStructure;
 
+import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzle;
+import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzleNode;
 import NPuzzle.ModelAbstract.PriorityFrontier;
 import NPuzzle.EightPuzzle.Utilities.EightHeuristic;
 
@@ -11,29 +13,36 @@ public class BeamFrontierEight extends PriorityFrontier<EightPuzzle, EightPuzzle
 
     private final List<EightPuzzleNode> list;
 
-    private final int k;
-
-
-    public BeamFrontierEight(int k) {
+    public BeamFrontierEight() {
         this.list = new ArrayList<>();
-        this.k = k;
     }
 
-
+    /**
+     *
+     * @param node
+     */
     @Override
-    public void push(EightPuzzleNode node) {
-        int nodeHeuristic = EightHeuristic.heuristic2(node.getCurrentState()) + node.getDept();
+    public void push(EightPuzzleNode node, String heuristic) {
+        int nodeHeuristic = node.getHeuristic(heuristic);
+        if (list.contains(node)) {
+            int index = 0;
+            for (EightPuzzleNode n : list) {
+                if (n.equals(node)) break;
+                index++;
+            }
+            int oldNodeH = list.get(index).getHeuristic(heuristic);
+            if (oldNodeH > nodeHeuristic) {
+                list.remove(index);
+            } else return;
+        }
         for(int i = 0; i < list.size(); i++) {
-            int currentH = EightHeuristic.heuristic2(list.get(i).getCurrentState()) + list.get(i).getDept();
+            int currentH = list.get(i).getHeuristic(heuristic);
             if(currentH > nodeHeuristic) {
                 list.add(i, node);
                 break;
             }
         }
         list.add(node);
-        if (list.size() > k) {
-            list.remove(list.size() - 1);
-        }
     }
 
     @Override

@@ -14,12 +14,26 @@ public class AFrontierEight extends PriorityFrontier<EightPuzzle, EightPuzzleNod
         this.list = new ArrayList<>();
     }
 
-
+    /**
+     *
+     * @param node
+     */
     @Override
-    public void push(EightPuzzleNode node) {
-        int nodeHeuristic = EightHeuristic.heuristic2(node.getCurrentState()) + node.getDept();
+    public void push(EightPuzzleNode node, String heuristic) {
+        int nodeHeuristic = node.getHeuristic(heuristic) + node.getDept();
+        if (list.contains(node)) {
+            int index = 0;
+            for (EightPuzzleNode n : list) {
+                if (n.equals(node)) break;
+                index++;
+            }
+            int oldNodeH = list.get(index).getHeuristic(heuristic) + list.get(index).getDept();
+            if (oldNodeH > nodeHeuristic) {
+                list.remove(index);
+            } else return;
+        }
         for(int i = 0; i < list.size(); i++) {
-            int currentH = EightHeuristic.heuristic2(list.get(i).getCurrentState()) + list.get(i).getDept();
+            int currentH = list.get(i).getHeuristic(heuristic) + list.get(i).getDept();
             if(currentH > nodeHeuristic) {
                 list.add(i, node);
                 break;
@@ -44,4 +58,6 @@ public class AFrontierEight extends PriorityFrontier<EightPuzzle, EightPuzzleNod
     public int size() {
         return list.size();
     }
+
+
 }

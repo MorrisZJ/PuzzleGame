@@ -6,7 +6,7 @@ import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzleNode;
 import java.util.*;
 
 /**
- *
+ * This is the old version of search
  * @author Jiamu Zhang
  */
 public class SearchEightPuzzle {
@@ -18,10 +18,10 @@ public class SearchEightPuzzle {
      * @param goalState
      * @return
      */
-    public static List<EightPuzzleNode> aStarSearch(EightPuzzleNode startState, EightPuzzleNode goalState) {
+    public static List<EightPuzzleNode> aStarSearch(EightPuzzleNode startState, EightPuzzleNode goalState, String heuristic) {
         List<EightPuzzleNode> explored = new ArrayList<>();
         AFrontierEight frontier = new AFrontierEight();
-        frontier.push(startState);
+        frontier.push(startState, heuristic);
 
         while (!frontier.isEmpty()) {
 
@@ -44,7 +44,7 @@ public class SearchEightPuzzle {
                 for (EightPuzzleNode successor: node.findReachableMove()) {
                     if (!explored.contains(successor)) {
                         successor.setDept(node.getDept() + 1);
-                        frontier.push(successor);
+                        frontier.push(successor, heuristic);
                     }
                 }
             }
@@ -61,11 +61,11 @@ public class SearchEightPuzzle {
      * @param k
      * @return
      */
-    public static List<EightPuzzleNode> beamSearch(EightPuzzleNode startState, EightPuzzleNode goalState, int k) {
+    public static List<EightPuzzleNode> beamSearch(EightPuzzleNode startState, EightPuzzleNode goalState, int k, String heuristic) {
 
         List<EightPuzzleNode> explored = new ArrayList<>();
-        BeamFrontierEight frontier = new BeamFrontierEight(k);
-        frontier.push(startState);
+        BeamFrontierEight frontier = new BeamFrontierEight();
+        frontier.push(startState, heuristic);
         int counter = 0;
 
         while (true) {
@@ -96,7 +96,7 @@ public class SearchEightPuzzle {
                     for (EightPuzzleNode successor : nodeTemp.findReachableMove()) {
                         if (!explored.contains(successor)) {
                             successor.setDept(nodeTemp.getDept() + 1);
-                            frontier.push(successor);
+                            frontier.push(successor, heuristic);
                         }
                     }
                 }
