@@ -33,5 +33,5 @@ public abstract class PriorityFrontier<StateType, NodeType extends Node<StateTyp
      */
     public abstract int size();
 
-
+    public abstract boolean contain(NodeType node);
 }

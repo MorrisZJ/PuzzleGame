@@ -17,7 +17,33 @@ public class Test {
         testBeam(50);
         System.out.println("A-star");
         testAstar();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
 
 
 
@@ -68,7 +94,7 @@ public class Test {
         EightPuzzle puzzleGoal = new EightPuzzle(stateGoal);
         EightPuzzleNode goal = new EightPuzzleNode(puzzleGoal);
         PuzzleSearch<EightPuzzle, EightPuzzleNode, String, BeamFrontierEight> puzzleSearch = new PuzzleSearch<>();
-        List<EightPuzzleNode> list = puzzleSearch.beamSearch(start, goal, new BeamFrontierEight(), "h2", k);
+        List<EightPuzzleNode> list = puzzleSearch.beamSearch(start, goal, new BeamFrontierEight(), "h2", k, 40000);
 
         for (int i = 0; i < list.size() / 2; i++) {
             EightPuzzleNode temp = list.get(i);

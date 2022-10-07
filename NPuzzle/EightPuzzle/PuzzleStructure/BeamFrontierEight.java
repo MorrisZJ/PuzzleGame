@@ -1,10 +1,5 @@
 package NPuzzle.EightPuzzle.PuzzleStructure;
-
-import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzle;
-import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzleNode;
 import NPuzzle.ModelAbstract.PriorityFrontier;
-import NPuzzle.EightPuzzle.Utilities.EightHeuristic;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +55,11 @@ public class BeamFrontierEight extends PriorityFrontier<EightPuzzle, EightPuzzle
     @Override
     public int size() {
         return list.size();
+    }
+
+    @Override
+    public boolean contain(EightPuzzleNode node) {
+        return list.contains(node);
     }
 
 }

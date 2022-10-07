@@ -59,5 +59,8 @@ public class AFrontierEight extends PriorityFrontier<EightPuzzle, EightPuzzleNod
         return list.size();
     }
 
-
+    @Override
+    public boolean contain(EightPuzzleNode node) {
+        return list.contains(node);
+    }
 }
