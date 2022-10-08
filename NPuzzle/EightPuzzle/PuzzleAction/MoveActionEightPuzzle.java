@@ -1,12 +1,16 @@
 package NPuzzle.EightPuzzle.PuzzleAction;
 
+/**
+ * The MoveActionEightPuzzle class stores the function of moves actions of Eight-Puzzle.
+ * @author Jiamu Zhang
+ */
 public class MoveActionEightPuzzle {
 
     /**
-     * Moves function
-     * @param direction
-     * @param beforeMove
-     * @return
+     * Moves function that do moves action based on input direction and array representation of puzzle.
+     * @param direction The direction of move.
+     * @param beforeMove The array representation of puzzle before the move is done.
+     * @return Return an array representation of puzzle after the move is done.
      */
     public static Character[] moves(String direction, Character[] beforeMove) {
         Character[] afterMove = new Character[beforeMove.length];
@@ -50,25 +54,25 @@ public class MoveActionEightPuzzle {
     }
 
     /**
-     * Check whether the direction of move is valid
-     * @param direction
-     * @param blankIndex
-     * @return
+     * Check whether the direction of move is valid.
+     * @param direction The direction of move.
+     * @param blankIndex The index of blank tile.
+     * @return Return true if the move is valid, else return false.
      */
     public static boolean checkMove(String direction,int blankIndex) {
-        switch (direction) {
-            case "up": return blankIndex != 6 && blankIndex != 7 && blankIndex != 8;
-            case "down": return blankIndex != 0 && blankIndex != 1 && blankIndex != 2;
-            case "left": return blankIndex != 2 && blankIndex != 5 && blankIndex != 8;
-            case "right": return blankIndex != 0 && blankIndex != 3 && blankIndex != 6;
-            default: return false;
-        }
+        return switch (direction) {
+            case "up" -> blankIndex != 6 && blankIndex != 7 && blankIndex != 8;
+            case "down" -> blankIndex != 0 && blankIndex != 1 && blankIndex != 2;
+            case "left" -> blankIndex != 2 && blankIndex != 5 && blankIndex != 8;
+            case "right" -> blankIndex != 0 && blankIndex != 3 && blankIndex != 6;
+            default -> false;
+        };
     }
 
     /**
-     * Find the index of blank tile
-     * @param beforeMove
-     * @return
+     * Find the index of blank tile.
+     * @param beforeMove The array representation of puzzle before the move is done.
+     * @return Return the index of blank tile.
      */
     public static int findBlank(Character[] beforeMove) {
         int index = 0;
@@ -81,10 +85,10 @@ public class MoveActionEightPuzzle {
     }
 
     /**
-     *
-     * @param characters
-     * @param i
-     * @param j
+     * Swap two tiles.
+     * @param characters The array representation of puzzle.
+     * @param i The first tile's index.
+     * @param j The second tile's index.
      */
     private static void swap(Character[] characters, int i, int j) {
         Character temp = characters[i];

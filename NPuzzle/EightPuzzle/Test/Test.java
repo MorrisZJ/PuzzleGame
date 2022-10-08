@@ -14,7 +14,7 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Beam:");
-        testBeam(50);
+        testBeam(500);
         System.out.println("A-star");
         testAstar();
 
