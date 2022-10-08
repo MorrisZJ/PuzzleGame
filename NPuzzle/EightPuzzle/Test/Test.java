@@ -66,7 +66,7 @@ public class Test {
         EightPuzzleNode goal = new EightPuzzleNode(puzzleGoal);
 
         PuzzleSearch<EightPuzzle, EightPuzzleNode, String, AFrontierEight> searchEight = new PuzzleSearch<>();
-        List<EightPuzzleNode> list = searchEight.aStarSearch(start, goal, new AFrontierEight(), "h2");
+        List<EightPuzzleNode> list = searchEight.aStarSearch(start, goal, new AFrontierEight(), "h2", 50000);
 
         for (int i = 0; i < list.size() / 2; i++) {
             EightPuzzleNode temp = list.get(i);

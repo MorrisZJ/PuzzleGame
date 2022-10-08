@@ -86,7 +86,7 @@ public class GameEightPuzzle {
         EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
         EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
         PuzzleSearch<EightPuzzle, EightPuzzleNode, String, AFrontierEight> search = new PuzzleSearch<>();
-        List<EightPuzzleNode> listOfNodes = search.aStarSearch(stateNode, goalNode, new AFrontierEight(), heuristic);
+        List<EightPuzzleNode> listOfNodes = search.aStarSearch(stateNode, goalNode, new AFrontierEight(), heuristic, getMaxNodes());
         LinkedList<String> listMove = new LinkedList<>();
         for (EightPuzzleNode listOfNode : listOfNodes) {
             if (listOfNode.getActFromParentToCurrent() != null) {
