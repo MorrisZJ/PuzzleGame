@@ -7,7 +7,8 @@ package NPuzzle.ModelAbstract;
  * @param <ActionType> The representation of action from parent node to current node in NodeType class.
  * @author Jiamu Zhang
  */
-public abstract class PriorityFrontier<StateType, NodeType extends Node<StateType, NodeType, ActionType>, ActionType> {
+public abstract class PriorityFrontier<StateType, NodeType
+        extends Node<StateType, NodeType, ActionType>, ActionType> {
 
 
     /**

@@ -9,14 +9,13 @@ import java.util.List;
  * @author Jiamu Zhang
  *
  * @param <StateType> The StateType is the specific representation of the puzzle current state of searching problems.
- * @param <NodeType> The NodeType is the type of parent node of Node, usually the same as current node.
+ * @param <Node> The NodeType is the type of parent node of Node.
  * @param <ActionType> The representation of action from parent node to current node in NodeType class.
  */
-public abstract class Node<StateType, NodeType, ActionType> {
+public abstract class Node<StateType, Node, ActionType> {
     private final StateType currentState;
-    private final NodeType parentNode;
+    private final Node parentNode;
     private final ActionType actFromParentToCurrent;
-
 
     /**
      * The constructor of node.
@@ -24,7 +23,7 @@ public abstract class Node<StateType, NodeType, ActionType> {
      * @param parentNode The node's parent node.
      * @param actFromParentToCurrent The action from parent node to current node.
      */
-    protected Node(StateType currentState, NodeType parentNode, ActionType actFromParentToCurrent) {
+    protected Node(StateType currentState, Node parentNode, ActionType actFromParentToCurrent) {
         this.currentState = currentState;
         this.parentNode = parentNode;
         this.actFromParentToCurrent = actFromParentToCurrent;
@@ -43,7 +42,7 @@ public abstract class Node<StateType, NodeType, ActionType> {
      * The method will return a list of successors or current node
      * @return Return a list of successors of current node.
      */
-    public abstract List<NodeType> findReachableMove();
+    public abstract List<Node> findReachableMove();
 
     /**
      * The getter method returning the current state of node.
@@ -57,7 +56,7 @@ public abstract class Node<StateType, NodeType, ActionType> {
      * The getter method returning the parent node.
      * @return Return the parent node of current node.
      */
-    public NodeType getParentNode() {
+    public Node getParentNode() {
         return parentNode;
     }
 
@@ -97,11 +96,11 @@ public abstract class Node<StateType, NodeType, ActionType> {
      * @return Return a new node after a move from current state.
      * @throws InterruptedException Throw exception if such move is invalid.
      */
-    public abstract NodeType doMove(ActionType actionDone) throws InterruptedException;
+    public abstract Node doMove(ActionType actionDone) throws InterruptedException;
 
     /**
      * The method will calculate the heuristic value of current state.
-     * @param heuristic The type of heuristic function.
+     * @param heuristic The type of heuristic function, either h1 or h2.
      * @return Return the heuristic value of current state,
      */
     public abstract int getHeuristic(String heuristic);
