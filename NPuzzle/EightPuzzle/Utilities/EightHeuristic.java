@@ -7,6 +7,7 @@ import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzle;
 /**
  * The Util class stores some specific operation and function that are used
  * to support the main function of the program
+ * @author Jiamu Zhang
  */
 public class EightHeuristic {
 
@@ -14,7 +15,7 @@ public class EightHeuristic {
      * This is a heuristic function that return the numbers of the mismatch tiles.
      * @param puzzle Puzzle as an input stores the specific puzzle states that used to
      *               calculate the value of heuristic function.
-     * @return Return h(x), the heuristic value of current state of the input puzzle
+     * @return Return h1(x), the heuristic value of current state of the input puzzle.
      */
     public static int heuristic1(EightPuzzle puzzle) {
         int count = 0;
@@ -26,18 +27,19 @@ public class EightHeuristic {
     }
 
     /**
-     *
-     * @param puzzle
-     * @return
+     * This is a heuristic function that return the sum of the distance of tiles from their goal positions.
+     * @param puzzle Puzzle as an input stores the specific puzzle states that used to
+     *               calculate the value of heuristic function.
+     * @return Return h2(x), the heuristic value of current state of the input puzzle.
      */
     public static int heuristic2(EightPuzzle puzzle) {
         return h2(puzzle.getPuzzleStateArray(), new Character[]{'b','1','2','3','4','5','6','7','8'});
     }
 
     /**
-     *
-     * @param oneState
-     * @return
+     * Convert the 1-D array representation of the state into 2-D array representation.
+     * @param oneState The 1-D array representation of a state.
+     * @return Return 2-D array representation.
      */
     public static Character[][] toTwoD(Character[] oneState) {
         int k = 0;
@@ -53,12 +55,12 @@ public class EightHeuristic {
     }
 
     /**
-     *
-     * @param currentState
-     * @param goalState
-     * @return
+     * The helper method that used to calculate the heuristic value based on h2(x)
+     * @param currentState Current state of puzzle.
+     * @param goalState Goal state of puzzle.
+     * @return Return h2(x), the heuristic value of current state of the input puzzle.
      */
-    public static int h2(Character[] currentState, Character[] goalState) {
+    private static int h2(Character[] currentState, Character[] goalState) {
         Character[][] cState = toTwoD(currentState);
         Character[][] gState = toTwoD(goalState);
         int totalDistance = 0;
@@ -76,12 +78,12 @@ public class EightHeuristic {
     }
 
     /**
-     *
-     * @param currentState
-     * @param goalState
-     * @param currentI
-     * @param currentJ
-     * @return
+     * Find the index of the mismatch tile.
+     * @param currentState Current state of puzzle.
+     * @param goalState Goal state of puzzle.
+     * @param currentI The horizontal index of the 2-D array.
+     * @param currentJ The vertical index of the 2-D array.
+     * @return Return the index of misMatch tail in the goal state.
      */
     private static int[] findMisMatch(Character[][] currentState, Character[][] goalState, int currentI, int currentJ) {
         int[] position = new int[2];

@@ -9,30 +9,32 @@ import NPuzzle.ModSearch.PuzzleSearch;
 import java.util.*;
 
 /**
- *
+ * This is the main class of the Eight-Puzzle game.
+ * Containing basic operation and searching function of the puzzle.
+ * @author Jiamu Zhang
  */
 public class GameEightPuzzle {
 
 
     /**
-     *
+     * The current state of the puzzle.
      */
     private Character[] currentState;
 
     /**
-     *
+     * The goal state of the puzzle.
      */
     private final Character[] goalState = new Character[]{'b','1','2','3','4','5','6','7','8'};
 
     /**
-     *
+     * The maximum number of nodes to consider during the local beam search.
      */
     private int maxNodes;
 
 
     /**
-     *
-     * @param state
+     * The setState method set the puzzle state based on input string.
+     * @param state The state to be set.
      */
     public void setState(String state) {
         if (getCurrentState() == null) setCurrentState(new Character[9]);
@@ -47,8 +49,9 @@ public class GameEightPuzzle {
 
 
     /**
-     *
-     * @param format
+     * Print the current state of the puzzle.
+     * Based on input format, the state can be either printed in line format or matrix format.
+     * @param format The format of the printed state.
      */
     public void printState(String format) {
         if (format.equals("string")) {
@@ -59,24 +62,25 @@ public class GameEightPuzzle {
     }
 
     /**
-     *
-     * @param direction
+     * The move method move the adjacent tile to the blank tile based on direction.
+     * @param direction The direction of the move.
      */
     public void move(String direction) {
         setCurrentState(MoveActionEightPuzzle.moves(direction, getCurrentState()));
     }
 
     /**
-     *
-     * @param n
+     * Make n random moves from the goal state.
+     * @param n The number of random moves.
      */
     public void randomizeState(int n) {
-        setCurrentState(RandomGenerator.randomizeStateAction(getCurrentState(), n));
+        setCurrentState(RandomGenerator.randomizeStateAction(getGoalState(), n));
     }
 
     /**
-     *
-     * @return
+     * Solve ghe puzzle from its current state using A-star search using input heuristic function.
+     * The heuristic can either be h1 or h2.
+     * @return Return a list of moves from current state to goal state.
      */
     public List<String> A_star(String heuristic) throws Exception {
         EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
@@ -93,9 +97,10 @@ public class GameEightPuzzle {
     }
 
     /**
-     *
-     * @param k
-     * @return
+     * Solve the puzzle from its current state using Local Beam search with k preserved states at each iteration.
+     * The usage of evaluation is h2, the sum of the distance of tiles from their goal positions.
+     * @param k The number of preserved states at each iteration.
+     * @return Return a list of moves from current state to goal state.
      */
     public List<String> beam(int k) throws Exception {
         EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
@@ -112,8 +117,8 @@ public class GameEightPuzzle {
     }
 
     /**
-     *
-     * @param n
+     * The maxNodes method specifies the maximum number of nodes to be considered during search.
+     * @param n The maximum number of nodes to be considered during search.
      */
     public void maxNodes(int n) {
         this.maxNodes = n;
@@ -121,8 +126,8 @@ public class GameEightPuzzle {
 
 
     /**
-     *
-     * @param matrix
+     * Print the state in matrix format.
+     * @param matrix The string argument that invoke this overload toString method.
      */
     private void toString(String matrix) {
         Character[][] characters = new Character[3][3];
@@ -139,20 +144,34 @@ public class GameEightPuzzle {
         System.out.println("  ");
     }
 
+    /**
+     * Getter method that return the current state.
+     * @return Return the current state.
+     */
     public Character[] getCurrentState() {
         return currentState;
     }
 
+    /**
+     * Setter method that set the current state.
+     * @param currentState The current state of eight puzzle.
+     */
     public void setCurrentState(Character[] currentState) {
         this.currentState = currentState;
     }
 
-    public GameEightPuzzle() {}
-
+    /**
+     * Getter method that return the goal state.
+     * @return Return the goal state.
+     */
     public Character[] getGoalState() {
         return goalState;
     }
 
+    /**
+     * Getter method that return the number of maximum nodes to be considered during a search.
+     * @return The maximum nodes to be considered during a search.
+     */
     public int getMaxNodes() {
         return this.maxNodes;
     }
