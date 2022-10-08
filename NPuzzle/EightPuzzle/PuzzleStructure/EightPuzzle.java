@@ -4,24 +4,26 @@ import NPuzzle.ModelAbstract.NPuzzle;
 import java.util.Arrays;
 
 /**
- *
+ * The EightPuzzle represents the state type that is eight-puzzle.
+ * This class stores the array representation of the state.
+ * @author Jiamu Zhang
  */
 public class EightPuzzle extends NPuzzle<Character> {
 
 
 
     /**
-     *
-     * @param puzzleStateArray
+     * This is the constructor of the class.
+     * @param puzzleStateArray The array representation of the state.
      */
     public EightPuzzle(Character[] puzzleStateArray) {
         super(puzzleStateArray, 8);
     }
 
     /**
-     *
-     * @param nPuzzle
-     * @return
+     * This is an override equals method that use the array representation of state as the comparing element.
+     * @param nPuzzle Another comparing puzzle.
+     * @return Return true if are same type of puzzle and state are equal, else return false.
      */
     @Override
     public boolean equals(NPuzzle<Character> nPuzzle) {
@@ -39,8 +41,8 @@ public class EightPuzzle extends NPuzzle<Character> {
     }
 
     /**
-     *
-     * @return
+     * An override toString method that use super class's toString method.
+     * @return Return string representation of the EightPuzzle.
      */
     @Override
     public String toString() {
@@ -48,9 +50,8 @@ public class EightPuzzle extends NPuzzle<Character> {
     }
 
     /**
-     *
-     * @param matrix
-     * @return
+     * An overload toString method that print the state as the 3 x 3 grid format.
+     * @param matrix Any string argument that used to call this method.
      */
     public void toString(String matrix) {
         Character[][] characters = new Character[3][3];

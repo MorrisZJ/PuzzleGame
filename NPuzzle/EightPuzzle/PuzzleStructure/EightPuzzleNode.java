@@ -1,6 +1,5 @@
 package NPuzzle.EightPuzzle.PuzzleStructure;
 
-
 import NPuzzle.EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
 import NPuzzle.EightPuzzle.Utilities.EightHeuristic;
 import NPuzzle.ModelAbstract.Node;
@@ -9,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The EightPuzzleNode class is used during the searching process.
+ * The class stores the depth, the current state, the parent node, and the action from parent node to current node.
  * @author Jiamu Zhang
  */
 public class EightPuzzleNode extends Node<EightPuzzle, EightPuzzleNode, String> {
