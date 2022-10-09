@@ -115,13 +115,6 @@ public class EightPuzzleNode extends Node<EightPuzzle, EightPuzzleNode, String> 
         } else return EightHeuristic.heuristic2(getCurrentState());
     }
 
-    /**
-     * Return the heuristic value based on heuristic function h2.
-     * @return Return the heuristic value.
-     */
-    public int getHeuristic() {
-        return EightHeuristic.heuristic2(getCurrentState());
-    }
 
     /**
      * Setter method that set the depth of the node.

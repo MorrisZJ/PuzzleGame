@@ -13,9 +13,10 @@ public class TestEightPuzzle {
 
         GameEightPuzzle puzzle = new GameEightPuzzle();
 
-        File file = new File("/Users/morriszhang/Desktop/CWRU/Third-Year/First_Semester/CSDS391/Jiamu_Zhang_P1/Test_Case/BasicTestCase.txt");
+        File fileSource = new File("/Users/morriszhang/Desktop/CWRU/Third-Year/First_Semester/CSDS391/Jiamu_Zhang_P1/Test_Case/Experiment.txt");
 
-        Scanner sc = new Scanner(file);
+
+        Scanner sc = new Scanner(fileSource);
         boolean flag = true;
         while (sc.hasNext() && flag) {
 
@@ -47,8 +48,8 @@ public class TestEightPuzzle {
                         System.out.println("");
                     } else if (command1.equals("beam")) {
                         System.out.println("The initial state is: " + Arrays.toString(puzzle.getCurrentState()));
-                        System.out.println("Local Beam search begin.....");
                         int k = sc.nextInt();
+                        System.out.println("Local Beam search with k = " + k + " begin.....");
                         List<String> list = puzzle.beam(k);
                         System.out.println("The number of tile moves is: " + list.size());
                         System.out.println("The solution is: " + list);

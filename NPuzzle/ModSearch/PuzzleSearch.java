@@ -42,7 +42,7 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
          frontier.push(startState, heuristic);
 
          // A counter that used to keep track of the total number of nodes consider during the searching process
-         int count = 0;
+         int count = 1;
 
          // A list that stores the kth best successors
          List<NodeType> kBestList = new LinkedList<>();
@@ -70,6 +70,9 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
                          stack.add(node);
                          node = node.getParentNode();
                      }
+                     System.out.println("The search cost is: " + count);
+                     double bf = Math.pow(count, (float) 1 / stack.size());
+                     System.out.println("The effective branching factor is: " + bf);
                      return stack;
 
                  } else {
@@ -110,7 +113,7 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
         frontier.push(startState, heuristic);  // frontier: Opened list
 
         // A counter that used to keep track of the total number of nodes consider during the searching process
-        int count = 0;
+        int count = 1;
 
         // Main loop of the searching process
         while (!frontier.isEmpty() && count < maxNode) {
@@ -128,6 +131,9 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
                     stack.add(node);
                     node = node.getParentNode();
                 }
+                System.out.println("The search cost is: " + count);
+                double bf = Math.pow(count, (float) 1 / stack.size());
+                System.out.println("The effective branching factor is: " + bf);
                 return stack;
             }
 
@@ -177,7 +183,6 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
                 } else {
                     frontier.push(successor, heuristic);
                 }
-
                 count++;
 
             }

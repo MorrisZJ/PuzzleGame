@@ -1,20 +1,42 @@
-package NPuzzle.EightPuzzle;
+package NPuzzle.ElevenPuzzle;
+
 import NPuzzle.EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
 import NPuzzle.EightPuzzle.PuzzleStructure.AFrontierEight;
 import NPuzzle.EightPuzzle.PuzzleStructure.BeamFrontierEight;
 import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzle;
 import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzleNode;
 import NPuzzle.EightPuzzle.Utilities.RandomGenerator;
+import NPuzzle.ElevenPuzzle.PuzzleStructure.AFrontierEle;
+import NPuzzle.ElevenPuzzle.PuzzleStructure.BeamFrontierEle;
+import NPuzzle.ElevenPuzzle.PuzzleStructure.ElevenPuzzle;
+import NPuzzle.ElevenPuzzle.PuzzleStructure.ElevenPuzzleNode;
+import NPuzzle.ElevenPuzzle.Utilities.RandomGenEle;
 import NPuzzle.ModSearch.PuzzleSearch;
-import java.util.*;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * This is the main class of the Eight-Puzzle game.
- * Containing basic operation and searching function of the puzzle.
+ *
  * @author Jiamu Zhang
  */
-public class GameEightPuzzle {
+public class GameElevenPuzzle {
 
+    public static void main(String[] args) {
+        GameElevenPuzzle p = new GameElevenPuzzle();
+        p.setState("b12 345 678 9xy");
+        p.printState("matrix");
+        p.printState("string");
+        p.move("left");
+        p.move("left");
+        p.move("up");
+        p.move("right");
+        p.move("right");
+        p.move("up");
+        p.printState("matrix");
+        p.printState("string");
+    }
 
     /**
      * The current state of the puzzle.
@@ -23,8 +45,9 @@ public class GameEightPuzzle {
 
     /**
      * The goal state of the puzzle.
+     * Use x and y represent 10 and 11
      */
-    private final Character[] goalState = new Character[]{'b','1','2','3','4','5','6','7','8'};
+    private final Character[] goalState = new Character[]{'b','1','2','3','4','5','6','7','8','9','x','y'};
 
     /**
      * The maximum number of nodes to consider during the local beam search.
@@ -37,8 +60,8 @@ public class GameEightPuzzle {
      * @param state The state to be set.
      */
     public void setState(String state) {
-        if (getCurrentState() == null) setCurrentState(new Character[9]);
-        for (int i = 0, j = 0; i < goalState.length && j < state.length(); i++, j++) {
+        if (getCurrentState() == null) setCurrentState(new Character[getGoalState().length]);
+        for (int i = 0, j = 0; i < getGoalState().length && j < state.length(); i++, j++) {
             if (state.charAt(j) != ' ') {
                 getCurrentState()[i] = state.charAt(j);
             } else {
@@ -77,7 +100,7 @@ public class GameEightPuzzle {
      * @param n The number of random moves.
      */
     public void randomizeState(int n) {
-        setCurrentState(RandomGenerator.randomizeStateAction(getGoalState(), n, 123));
+        setCurrentState(RandomGenEle.randomizeStateAction(getGoalState(), n, 123));
     }
 
     /**
@@ -86,12 +109,12 @@ public class GameEightPuzzle {
      * @return Return a list of moves from current state to goal state.
      */
     public List<String> A_star(String heuristic) throws Exception {
-        EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
-        EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
-        PuzzleSearch<EightPuzzle, EightPuzzleNode, String, AFrontierEight> search = new PuzzleSearch<>();
-        List<EightPuzzleNode> listOfNodes = search.aStarSearch(stateNode, goalNode, new AFrontierEight(), heuristic, getMaxNodes());
+        ElevenPuzzleNode stateNode = new ElevenPuzzleNode(new ElevenPuzzle(getCurrentState()));
+        ElevenPuzzleNode goalNode = new ElevenPuzzleNode(new ElevenPuzzle(getGoalState()));
+        PuzzleSearch<ElevenPuzzle, ElevenPuzzleNode, String, AFrontierEle> search = new PuzzleSearch<>();
+        List<ElevenPuzzleNode> listOfNodes = search.aStarSearch(stateNode, goalNode, new AFrontierEle(), heuristic, getMaxNodes());
         LinkedList<String> listMove = new LinkedList<>();
-        for (EightPuzzleNode listOfNode : listOfNodes) {
+        for (ElevenPuzzleNode listOfNode : listOfNodes) {
             if (listOfNode.getActFromParentToCurrent() != null) {
                 listMove.addFirst(listOfNode.getActFromParentToCurrent());
             }
@@ -106,12 +129,12 @@ public class GameEightPuzzle {
      * @return Return a list of moves from current state to goal state.
      */
     public List<String> beam(int k) throws Exception {
-        EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
-        EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
-        PuzzleSearch<EightPuzzle, EightPuzzleNode, String, BeamFrontierEight> search = new PuzzleSearch<>();
-        List<EightPuzzleNode> listOfNodes = search.beamSearch(stateNode, goalNode, new BeamFrontierEight(), "h2", k, getMaxNodes());
+        ElevenPuzzleNode stateNode= new ElevenPuzzleNode(new ElevenPuzzle(getCurrentState()));
+        ElevenPuzzleNode goalNode= new ElevenPuzzleNode(new ElevenPuzzle(getGoalState()));
+        PuzzleSearch<ElevenPuzzle, ElevenPuzzleNode, String, BeamFrontierEle> search = new PuzzleSearch<>();
+        List<ElevenPuzzleNode> listOfNodes = search.beamSearch(stateNode, goalNode, new BeamFrontierEle(), "h2", k, getMaxNodes());
         LinkedList<String> listMove = new LinkedList<>();
-        for (EightPuzzleNode listOfNode : listOfNodes) {
+        for (ElevenPuzzleNode listOfNode : listOfNodes) {
             if (listOfNode.getActFromParentToCurrent() != null) {
                 listMove.addFirst(listOfNode.getActFromParentToCurrent());
             }
@@ -133,7 +156,7 @@ public class GameEightPuzzle {
      * @param matrix The string argument that invoke this overload toString method.
      */
     private void toString(String matrix) {
-        Character[][] characters = new Character[3][3];
+        Character[][] characters = new Character[4][3];
         int k = 0;
         for (int i = 0; i < characters.length; i++) {
             for (int j = 0; j < characters[i].length; j++) {

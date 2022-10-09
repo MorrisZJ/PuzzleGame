@@ -1,8 +1,9 @@
-package NPuzzle.EightPuzzle.Test;
+package NPuzzle.Test;
 import NPuzzle.EightPuzzle.PuzzleStructure.AFrontierEight;
 import NPuzzle.EightPuzzle.PuzzleStructure.BeamFrontierEight;
 import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzle;
 import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzleNode;
+import NPuzzle.ElevenPuzzle.GameElevenPuzzle;
 import NPuzzle.ModSearch.PuzzleSearch;
 
 import java.util.List;
@@ -13,36 +14,39 @@ public class Test {
 
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Beam:");
-        testBeam(50);
-        System.out.println("A-star");
-        testAstar();
+        testElevenAstar();
+        testElevenBeam(); // Beam much faster
+    }
 
 
 
+    public static void testElevenAstar() throws Exception {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        GameElevenPuzzle puzzle = new GameElevenPuzzle();
+        puzzle.maxNodes(50000);
+        puzzle.setState("b12 345 678 9xy");
+        puzzle.printState("matrix");
+        puzzle.randomizeState(200);
+        puzzle.printState("matrix");
+        System.out.println(puzzle.A_star("h2"));
 
 
 
     }
 
+    public static void testElevenBeam() throws Exception {
 
+        GameElevenPuzzle puzzle = new GameElevenPuzzle();
+        puzzle.maxNodes(50000);
+        puzzle.setState("b12 345 678 9xy");
+        puzzle.printState("matrix");
+        puzzle.randomizeState(200);
+        puzzle.printState("matrix");
+        System.out.println(puzzle.beam(200));
+
+
+
+    }
 
 
 
