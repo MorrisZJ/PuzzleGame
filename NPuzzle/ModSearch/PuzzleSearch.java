@@ -1,9 +1,8 @@
 package NPuzzle.ModSearch;
 import NPuzzle.ModelAbstract.Node;
 import NPuzzle.ModelAbstract.PriorityFrontier;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+
+import java.util.*;
 
 /**
  * The PuzzleSearch class is a searching engine that contains A-Star search and Local Beam search functions.
@@ -71,7 +70,6 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
                          stack.add(node);
                          node = node.getParentNode();
                      }
-                     System.out.println(count);
                      return stack;
 
                  } else {
@@ -130,7 +128,6 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
                     stack.add(node);
                     node = node.getParentNode();
                 }
-                System.out.println(count);
                 return stack;
             }
 
@@ -190,7 +187,10 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
         }
 
         // The frontier is empty, so the searching is fail, and the exception is thrown
-        throw new RuntimeException("Searching fail.");
+        if (frontier.isEmpty()) throw new RuntimeException("Searching fail.");
+        else throw new RuntimeException("Exceed maximum nodes limit.");
     }
+
+
 
 }

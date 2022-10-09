@@ -66,7 +66,10 @@ public class GameEightPuzzle {
      * @param direction The direction of the move.
      */
     public void move(String direction) {
-        setCurrentState(MoveActionEightPuzzle.moves(direction, getCurrentState()));
+        Character[] state = MoveActionEightPuzzle.moves(direction, getCurrentState());
+        if (state != null) setCurrentState(state);
+        else System.out.println("Invalid Moves" + "\n");
+
     }
 
     /**
@@ -74,7 +77,7 @@ public class GameEightPuzzle {
      * @param n The number of random moves.
      */
     public void randomizeState(int n) {
-        setCurrentState(RandomGenerator.randomizeStateAction(getGoalState(), n));
+        setCurrentState(RandomGenerator.randomizeStateAction(getGoalState(), n, 123));
     }
 
     /**
@@ -83,8 +86,11 @@ public class GameEightPuzzle {
      * @return Return a list of moves from current state to goal state.
      */
     public List<String> A_star(String heuristic) throws Exception {
-        EightPuzzleNode stateNode= new EightPuzzleNode(new EightPuzzle(getCurrentState()));
-        EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
+        EightPuzzle startState = new EightPuzzle(getCurrentState());
+        EightPuzzle goalState = new EightPuzzle(getGoalState());
+
+        EightPuzzleNode stateNode= new EightPuzzleNode(startState, null,null);
+        EightPuzzleNode goalNode= new EightPuzzleNode(goalState,null,null);
         PuzzleSearch<EightPuzzle, EightPuzzleNode, String, AFrontierEight> search = new PuzzleSearch<>();
         List<EightPuzzleNode> listOfNodes = search.aStarSearch(stateNode, goalNode, new AFrontierEight(), heuristic, getMaxNodes());
         LinkedList<String> listMove = new LinkedList<>();
