@@ -43,17 +43,32 @@ public class TestEightPuzzle {
                         String command2 = sc.next();
                         System.out.println("A-star search with " + command2 + " heuristic begin.....");
                         List<String> list = puzzle.A_star(command2);
-                        System.out.println("The number of tile moves is: " + list.size());
-                        System.out.println("The solution is: " + list);
-                        System.out.println("");
+                        if (list == null) {
+                            System.out.println("Searching fail.");
+                            System.out.println("");
+                        } else {
+                            System.out.println("The search cost is: " + puzzle.getCostCurrentRun());
+                            System.out.println("The effective branching factor is: " + puzzle.getBfCurrentRun());
+                            System.out.println("The number of tile moves is: " + list.size());
+                            System.out.println("The solution is: " + list);
+                            System.out.println("");
+                        }
+
                     } else if (command1.equals("beam")) {
                         System.out.println("The initial state is: " + Arrays.toString(puzzle.getCurrentState()));
                         int k = sc.nextInt();
                         System.out.println("Local Beam search with k = " + k + " begin.....");
                         List<String> list = puzzle.beam(k);
-                        System.out.println("The number of tile moves is: " + list.size());
-                        System.out.println("The solution is: " + list);
-                        System.out.println("");
+                        if (list == null) {
+                            System.out.println("Searching fail.");
+                            System.out.println("");
+                        } else {
+                            System.out.println("The search cost is: " + puzzle.getCostCurrentRun());
+                            System.out.println("The effective branching factor is: " + puzzle.getBfCurrentRun());
+                            System.out.println("The number of tile moves is: " + list.size());
+                            System.out.println("The solution is: " + list);
+                            System.out.println("");
+                        }
                     }
                 }
                 case "maxNode" -> {

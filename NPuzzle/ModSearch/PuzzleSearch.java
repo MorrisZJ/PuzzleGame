@@ -22,6 +22,9 @@ import java.util.*;
 public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, ActionType>,
         ActionType, FrontierType extends PriorityFrontier<StateType, NodeType, ActionType>> {
 
+    public int costCurrentRun = 0;
+
+    public double bfCurrentRun = 0;
 
     /**
      * The aStarSearch method find the solution to solve the puzzle based on input starting state and goal state using
@@ -70,9 +73,13 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
                          stack.add(node);
                          node = node.getParentNode();
                      }
-                     System.out.println("The search cost is: " + count);
+
+                     this.costCurrentRun = count;
+//                     System.out.println("The search cost is: " + count);
                      double bf = Math.pow(count, (float) 1 / stack.size());
-                     System.out.println("The effective branching factor is: " + bf);
+
+                     this.bfCurrentRun = bf;
+//                     System.out.println("The effective branching factor is: " + bf);
                      return stack;
 
                  } else {
@@ -92,7 +99,8 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
 
         // The frontier is empty or number of total considered nodes exceeds the limit,
         // so the searching is fail, and the exception is thrown.
-         throw new RuntimeException("The number of nodes exceeded the limit during the search");
+         //throw new RuntimeException("The number of nodes exceeded the limit during the search");
+        return null;
     }
 
 
@@ -131,9 +139,11 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
                     stack.add(node);
                     node = node.getParentNode();
                 }
-                System.out.println("The search cost is: " + count);
+//                System.out.println("The search cost is: " + count);
                 double bf = Math.pow(count, (float) 1 / stack.size());
-                System.out.println("The effective branching factor is: " + bf);
+                this.bfCurrentRun = bf;
+                this.costCurrentRun = count;
+//                System.out.println("The effective branching factor is: " + bf);
                 return stack;
             }
 
@@ -192,8 +202,9 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
         }
 
         // The frontier is empty, so the searching is fail, and the exception is thrown
-        if (frontier.isEmpty()) throw new RuntimeException("Searching fail.");
-        else throw new RuntimeException("Exceed maximum nodes limit.");
+//        if (frontier.isEmpty()) throw new RuntimeException("Searching fail.");
+//        else throw new RuntimeException("Exceed maximum nodes limit.");
+        return null;
     }
 
 

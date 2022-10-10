@@ -31,6 +31,9 @@ public class GameEightPuzzle {
      */
     private int maxNodes;
 
+    private int costCurrentRun = 0;
+
+    private double bfCurrentRun = 0;
 
     /**
      * The setState method set the puzzle state based on input string.
@@ -90,13 +93,19 @@ public class GameEightPuzzle {
         EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
         PuzzleSearch<EightPuzzle, EightPuzzleNode, String, AFrontierEight> search = new PuzzleSearch<>();
         List<EightPuzzleNode> listOfNodes = search.aStarSearch(stateNode, goalNode, new AFrontierEight(), heuristic, getMaxNodes());
-        LinkedList<String> listMove = new LinkedList<>();
-        for (EightPuzzleNode listOfNode : listOfNodes) {
-            if (listOfNode.getActFromParentToCurrent() != null) {
-                listMove.addFirst(listOfNode.getActFromParentToCurrent());
+        if (listOfNodes != null) {
+            LinkedList<String> listMove = new LinkedList<>();
+            for (EightPuzzleNode listOfNode : listOfNodes) {
+                if (listOfNode.getActFromParentToCurrent() != null) {
+                    listMove.addFirst(listOfNode.getActFromParentToCurrent());
+                }
             }
-        }
-        return listMove;
+            setCostCurrentRun(search.costCurrentRun);
+            setBfCurrentRun(search.bfCurrentRun);
+            return listMove;
+        } else return null;
+
+
     }
 
     /**
@@ -110,13 +119,18 @@ public class GameEightPuzzle {
         EightPuzzleNode goalNode= new EightPuzzleNode(new EightPuzzle(getGoalState()));
         PuzzleSearch<EightPuzzle, EightPuzzleNode, String, BeamFrontierEight> search = new PuzzleSearch<>();
         List<EightPuzzleNode> listOfNodes = search.beamSearch(stateNode, goalNode, new BeamFrontierEight(), "h2", k, getMaxNodes());
-        LinkedList<String> listMove = new LinkedList<>();
-        for (EightPuzzleNode listOfNode : listOfNodes) {
-            if (listOfNode.getActFromParentToCurrent() != null) {
-                listMove.addFirst(listOfNode.getActFromParentToCurrent());
+        if (listOfNodes != null) {
+            LinkedList<String> listMove = new LinkedList<>();
+            for (EightPuzzleNode listOfNode : listOfNodes) {
+                if (listOfNode.getActFromParentToCurrent() != null) {
+                    listMove.addFirst(listOfNode.getActFromParentToCurrent());
+                }
             }
-        }
-        return listMove;
+            setCostCurrentRun(search.costCurrentRun);
+            setBfCurrentRun(search.bfCurrentRun);
+            return listMove;
+        } else return null;
+
     }
 
     /**
@@ -177,5 +191,22 @@ public class GameEightPuzzle {
      */
     public int getMaxNodes() {
         return this.maxNodes;
+    }
+
+
+    public int getCostCurrentRun() {
+        return costCurrentRun;
+    }
+
+    public void setCostCurrentRun(int costCurrentRun) {
+        this.costCurrentRun = costCurrentRun;
+    }
+
+    public double getBfCurrentRun() {
+        return bfCurrentRun;
+    }
+
+    public void setBfCurrentRun(double bfCurrentRun) {
+        this.bfCurrentRun = bfCurrentRun;
     }
 }
