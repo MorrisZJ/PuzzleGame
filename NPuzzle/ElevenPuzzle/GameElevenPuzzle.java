@@ -1,11 +1,7 @@
 package NPuzzle.ElevenPuzzle;
 
 import NPuzzle.EightPuzzle.PuzzleAction.MoveActionEightPuzzle;
-import NPuzzle.EightPuzzle.PuzzleStructure.AFrontierEight;
-import NPuzzle.EightPuzzle.PuzzleStructure.BeamFrontierEight;
-import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzle;
 import NPuzzle.EightPuzzle.PuzzleStructure.EightPuzzleNode;
-import NPuzzle.EightPuzzle.Utilities.RandomGenerator;
 import NPuzzle.ElevenPuzzle.PuzzleStructure.AFrontierEle;
 import NPuzzle.ElevenPuzzle.PuzzleStructure.BeamFrontierEle;
 import NPuzzle.ElevenPuzzle.PuzzleStructure.ElevenPuzzle;
@@ -23,20 +19,6 @@ import java.util.List;
  */
 public class GameElevenPuzzle {
 
-    public static void main(String[] args) {
-        GameElevenPuzzle p = new GameElevenPuzzle();
-        p.setState("b12 345 678 9xy");
-        p.printState("matrix");
-        p.printState("string");
-        p.move("left");
-        p.move("left");
-        p.move("up");
-        p.move("right");
-        p.move("right");
-        p.move("up");
-        p.printState("matrix");
-        p.printState("string");
-    }
 
     /**
      * The current state of the puzzle.
@@ -53,6 +35,17 @@ public class GameElevenPuzzle {
      * The maximum number of nodes to consider during the local beam search.
      */
     private int maxNodes;
+
+
+    /**
+     * The cost of the most recent run of search.
+     */
+    private int costCurrentRun = 0;
+
+    /**
+     * The branching factor of the most recent run of search.
+     */
+    private double bfCurrentRun = 0;
 
 
     /**
@@ -113,13 +106,17 @@ public class GameElevenPuzzle {
         ElevenPuzzleNode goalNode = new ElevenPuzzleNode(new ElevenPuzzle(getGoalState()));
         PuzzleSearch<ElevenPuzzle, ElevenPuzzleNode, String, AFrontierEle> search = new PuzzleSearch<>();
         List<ElevenPuzzleNode> listOfNodes = search.aStarSearch(stateNode, goalNode, new AFrontierEle(), heuristic, getMaxNodes());
-        LinkedList<String> listMove = new LinkedList<>();
-        for (ElevenPuzzleNode listOfNode : listOfNodes) {
-            if (listOfNode.getActFromParentToCurrent() != null) {
-                listMove.addFirst(listOfNode.getActFromParentToCurrent());
+        if (listOfNodes != null) {
+            LinkedList<String> listMove = new LinkedList<>();
+            for (ElevenPuzzleNode listOfNode : listOfNodes) {
+                if (listOfNode.getActFromParentToCurrent() != null) {
+                    listMove.addFirst(listOfNode.getActFromParentToCurrent());
+                }
             }
-        }
-        return listMove;
+            setCostCurrentRun(search.costCurrentRun);
+            setBfCurrentRun(search.bfCurrentRun);
+            return listMove;
+        } else return null;
     }
 
     /**
@@ -133,13 +130,17 @@ public class GameElevenPuzzle {
         ElevenPuzzleNode goalNode= new ElevenPuzzleNode(new ElevenPuzzle(getGoalState()));
         PuzzleSearch<ElevenPuzzle, ElevenPuzzleNode, String, BeamFrontierEle> search = new PuzzleSearch<>();
         List<ElevenPuzzleNode> listOfNodes = search.beamSearch(stateNode, goalNode, new BeamFrontierEle(), "h2", k, getMaxNodes());
-        LinkedList<String> listMove = new LinkedList<>();
-        for (ElevenPuzzleNode listOfNode : listOfNodes) {
-            if (listOfNode.getActFromParentToCurrent() != null) {
-                listMove.addFirst(listOfNode.getActFromParentToCurrent());
+        if (listOfNodes != null) {
+            LinkedList<String> listMove = new LinkedList<>();
+            for (ElevenPuzzleNode listOfNode : listOfNodes) {
+                if (listOfNode.getActFromParentToCurrent() != null) {
+                    listMove.addFirst(listOfNode.getActFromParentToCurrent());
+                }
             }
-        }
-        return listMove;
+            setCostCurrentRun(search.costCurrentRun);
+            setBfCurrentRun(search.bfCurrentRun);
+            return listMove;
+        } else return null;
     }
 
     /**
@@ -200,5 +201,37 @@ public class GameElevenPuzzle {
      */
     public int getMaxNodes() {
         return this.maxNodes;
+    }
+
+    /**
+     * Getter method for cost.
+     * @return Cost
+     */
+    public int getCostCurrentRun() {
+        return costCurrentRun;
+    }
+
+    /**
+     * Set cost for current run.
+     * @param costCurrentRun Cost of search.
+     */
+    public void setCostCurrentRun(int costCurrentRun) {
+        this.costCurrentRun = costCurrentRun;
+    }
+
+    /**
+     * Getter method for Branching factor.
+     * @return Branching factor
+     */
+    public double getBfCurrentRun() {
+        return bfCurrentRun;
+    }
+
+    /**
+     * Set Branching factor for current run.
+     * @param bfCurrentRun Branching factor.
+     */
+    public void setBfCurrentRun(double bfCurrentRun) {
+        this.bfCurrentRun = bfCurrentRun;
     }
 }

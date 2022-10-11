@@ -49,7 +49,7 @@ public class AFrontierEight extends PriorityFrontier<EightPuzzle, EightPuzzleNod
             int currentH = list.get(i).getHeuristic(heuristic) + list.get(i).getDept();
             if(currentH > nodeHeuristic) {
                 list.add(i, node);
-                break;
+                return;
             }
         }
         list.add(node);

@@ -1,40 +1,35 @@
 package NPuzzle.Experiment;
 
-import NPuzzle.EightPuzzle.GameEightPuzzle;
+
 import NPuzzle.ElevenPuzzle.GameElevenPuzzle;
 
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 /**
  * The Experiment class is used for running experiment of searching algorithms
  * and collecting data of those.
  * @author Jiamu Zhang
  */
-public class Experiment {
-
-
-    /**
-     * The main method that run the experiment.
-     * @param args Argument for run the main method.
-     * @throws Exception Exception for error.
-     */
+public class ExperimentElev {
     public static void main(String[] args) throws Exception {
 
 
         // Initialize puzzle and list to store the result
-        GameEightPuzzle puzzle = new GameEightPuzzle();
+        GameElevenPuzzle puzzle = new GameElevenPuzzle();
 
-        puzzle.setState("b12 345 678");
-        HashMap<Integer,  ArrayList<CostBranchTuple>> l1 = new HashMap<>();
+        puzzle.setState("b12 345 678 9xy");
+        HashMap<Integer, ArrayList<CostBranchTuple>> l1 = new HashMap<>();
         HashMap<Integer,  ArrayList<CostBranchTuple>> l2 = new HashMap<>();
         HashMap<Integer,  ArrayList<CostBranchTuple>> l3 = new HashMap<>();
 
         // Initialize max node limit
-        puzzle.maxNodes(50000);
+        puzzle.maxNodes(800000);
 
         // Conduct experiments
-        doExperiment(200, puzzle, l1, l2, l3, 200, 35, 5000);
+        doExperiment(200, puzzle, l1, l2, l3, 200, 35, 50);
 
         // Processing and collecting the data of experiment
         HashMap<Integer, CostBranchTuple> data1 = dataCollecting(l1);
@@ -114,7 +109,7 @@ public class Experiment {
      *                   for generating a random initial state puzzle.
      * @throws Exception Throw exception when error.
      */
-    public static void doExperiment(int numbRandomProb, GameEightPuzzle puzzle,  HashMap<Integer, ArrayList<CostBranchTuple>> l1,
+    public static void doExperiment(int numbRandomProb, GameElevenPuzzle puzzle,  HashMap<Integer, ArrayList<CostBranchTuple>> l1,
                                     HashMap<Integer, ArrayList<CostBranchTuple>> l2,
                                     HashMap<Integer, ArrayList<CostBranchTuple>> l3,
                                     int beamK, int seed, int randiRange) throws Exception
@@ -191,14 +186,13 @@ public class Experiment {
 
 
         System.out.println("The following data record the solutions of puzzles solvable to both three algorithm." + ":");
-        System.out.println("When max node limit is 50000, the number of solvable puzzle for h1 is: " + (200 - unSolveH1));
+        System.out.println("When max node limit is 800000, the number of solvable puzzle for h1 is: " + (200 - unSolveH1));
         System.out.println("The average solution length for h1 is: " + (totalSolutionLH1 / (200 - unSolveH1)));
-        System.out.println("When max node limit is 50000, the number of solvable puzzle for h2 is: " + (200 - unSolveH2));
+        System.out.println("When max node limit is 800000, the number of solvable puzzle for h2 is: " + (200 - unSolveH2));
         System.out.println("The average solution length for h2 is: " + (totalSolutionLH2 / (200 - unSolveH2)));
-        System.out.println("When max node limit is 50000, the number of solvable puzzle for beam is: " + (200 - unSolveBeam));
+        System.out.println("When max node limit is 800000, the number of solvable puzzle for beam is: " + (200 - unSolveBeam));
         System.out.println("The average solution length for beam is: " + (totalSolutionLBeam / (200 - unSolveBeam)));
 
 
     }
-
 }

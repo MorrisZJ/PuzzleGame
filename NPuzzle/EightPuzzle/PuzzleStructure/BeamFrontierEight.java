@@ -26,7 +26,7 @@ public class BeamFrontierEight extends PriorityFrontier<EightPuzzle, EightPuzzle
     /**
      * The push method add the node with the type of heuristic function into the list.
      * The node will be added to the position according to input type of heuristic function
-     * and the state and depth inside node.
+     * and the state inside node.
      * @param node The node that is to be pushed into the frontier.
      * @param heuristic The type of heuristic function, either h1 or h2.
      */
@@ -48,7 +48,7 @@ public class BeamFrontierEight extends PriorityFrontier<EightPuzzle, EightPuzzle
             int currentH = list.get(i).getHeuristic(heuristic);
             if(currentH > nodeHeuristic) {
                 list.add(i, node);
-                break;
+                return;
             }
         }
         list.add(node);

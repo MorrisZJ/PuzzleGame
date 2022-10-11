@@ -31,8 +31,14 @@ public class GameEightPuzzle {
      */
     private int maxNodes;
 
+    /**
+     * The cost of the most recent run of search.
+     */
     private int costCurrentRun = 0;
 
+    /**
+     * The branching factor of the most recent run of search.
+     */
     private double bfCurrentRun = 0;
 
     /**
@@ -193,19 +199,34 @@ public class GameEightPuzzle {
         return this.maxNodes;
     }
 
-
+    /**
+     * Getter method for cost.
+     * @return Cost
+     */
     public int getCostCurrentRun() {
         return costCurrentRun;
     }
 
+    /**
+     * Set cost for current run.
+     * @param costCurrentRun Cost of search.
+     */
     public void setCostCurrentRun(int costCurrentRun) {
         this.costCurrentRun = costCurrentRun;
     }
 
+    /**
+     * Getter method for Branching factor.
+     * @return Branching factor
+     */
     public double getBfCurrentRun() {
         return bfCurrentRun;
     }
 
+    /**
+     * Set Branching factor for current run.
+     * @param bfCurrentRun Branching factor.
+     */
     public void setBfCurrentRun(double bfCurrentRun) {
         this.bfCurrentRun = bfCurrentRun;
     }

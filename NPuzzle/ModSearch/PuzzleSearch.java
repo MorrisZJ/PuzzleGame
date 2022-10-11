@@ -140,8 +140,7 @@ public class PuzzleSearch<StateType, NodeType extends Node<StateType, NodeType, 
                     node = node.getParentNode();
                 }
 //                System.out.println("The search cost is: " + count);
-                double bf = Math.pow(count, (float) 1 / stack.size());
-                this.bfCurrentRun = bf;
+                this.bfCurrentRun = Math.pow(count, (float) 1 / stack.size());
                 this.costCurrentRun = count;
 //                System.out.println("The effective branching factor is: " + bf);
                 return stack;

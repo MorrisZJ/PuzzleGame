@@ -9,7 +9,6 @@ public class ElevenPuzzle extends NPuzzle<Character> {
 
     /**
      * The constructor of the NPuzzle.
-     *
      * @param puzzleStateArray The array representation of the state.
      */
     public ElevenPuzzle(Character[] puzzleStateArray) {
@@ -17,9 +16,9 @@ public class ElevenPuzzle extends NPuzzle<Character> {
     }
 
     /**
-     *
-     * @param nPuzzle The puzzle state.
-     * @return
+     * This is an override equals method that use the array representation of state as the comparing element.
+     * @param nPuzzle Another comparing puzzle.
+     * @return Return true if are same type of puzzle and state are equal, else return false.
      */
     @Override
     public boolean equals(NPuzzle<Character> nPuzzle) {

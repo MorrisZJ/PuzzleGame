@@ -1,16 +1,16 @@
 package NPuzzle.ElevenPuzzle.PuzzleAction;
 
 /**
- *
+ * The MoveActionElevenPuzzle class stores the function of moves actions of Eleven-Puzzle.
  * @author Jiamu Zhang
  */
 public class MoveActionElevenPuzzle {
 
     /**
-     *
-     * @param direction
-     * @param beforeMove
-     * @return
+     * Moves function that do moves action based on input direction and array representation of puzzle.
+     * @param direction The direction of move.
+     * @param beforeMove The array representation of puzzle before the move is done.
+     * @return Return an array representation of puzzle after the move is done.
      */
     public static Character[] moves(String direction, Character[] beforeMove) {
         Character[] afterMove = new Character[beforeMove.length];
@@ -54,10 +54,10 @@ public class MoveActionElevenPuzzle {
     }
 
     /**
-     *
-     * @param direction
-     * @param blankIndex
-     * @return
+     * Check whether the direction of move is valid.
+     * @param direction The direction of move.
+     * @param blankIndex The index of blank tile.
+     * @return Return true if the move is valid, else return false.
      */
     public static boolean checkMove(String direction,int blankIndex) {
         return switch (direction) {
@@ -70,9 +70,9 @@ public class MoveActionElevenPuzzle {
     }
 
     /**
-     *
-     * @param beforeMove
-     * @return
+     * Find the index of blank tile.
+     * @param beforeMove The array representation of puzzle before the move is done.
+     * @return Return the index of blank tile.
      */
     public static int findBlank(Character[] beforeMove) {
         int index = 0;
@@ -84,10 +84,10 @@ public class MoveActionElevenPuzzle {
     }
 
     /**
-     *
-     * @param characters
-     * @param i
-     * @param j
+     * Swap two tiles.
+     * @param characters The array representation of puzzle.
+     * @param i The first tile's index.
+     * @param j The second tile's index.
      */
     private static void swap(Character[] characters, int i, int j) {
         Character temp = characters[i];

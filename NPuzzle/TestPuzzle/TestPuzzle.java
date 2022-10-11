@@ -1,20 +1,41 @@
-package NPuzzle.TestEIghtPuzzle;
+package NPuzzle.TestPuzzle;
 
 import NPuzzle.EightPuzzle.GameEightPuzzle;
+import NPuzzle.ElevenPuzzle.GameElevenPuzzle;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class TestEightPuzzle {
+/**
+ * The TestPuzzle class is used to test the basic functionality of the Eight Puzzle and
+ * Eleven Puzzle by reading a command file.
+ * @author Jiamu Zhang
+ */
+public class TestPuzzle {
 
+    /**
+     * The main method that run the test.
+     * @param args Argument of main method.
+     * @throws Exception Throw exception when error.
+     */
     public static void main(String[] args) throws Exception {
 
-        GameEightPuzzle puzzle = new GameEightPuzzle();
+        // Initialize EightPuzzle
+         GameEightPuzzle puzzle = new GameEightPuzzle();
 
+        /*
+            To test the eleven puzzle, please just comment
+            the eight puzzle and make things under not commented
+         */
+
+        // Initialize ElevenPuzzle
+        // GameElevenPuzzle puzzle = new GameElevenPuzzle();
+
+        // Please update the path of command file!
         File fileSource = new File("/Users/morriszhang/Desktop/CWRU/Third-Year/First_Semester/CSDS391/Jiamu_Zhang_P1/Test_Case/Experiment.txt");
-
+        //File fileSource = new File("/Users/morriszhang/Desktop/CWRU/Third-Year/First_Semester/CSDS391/Jiamu_Zhang_P1/Test_Case/Experiment_11Puzzle.txt");
 
         Scanner sc = new Scanner(fileSource);
         boolean flag = true;
