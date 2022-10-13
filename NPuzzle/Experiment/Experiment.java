@@ -1,7 +1,6 @@
 package NPuzzle.Experiment;
 
 import NPuzzle.EightPuzzle.GameEightPuzzle;
-import NPuzzle.ElevenPuzzle.GameElevenPuzzle;
 
 
 import java.util.*;
